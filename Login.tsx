@@ -49,12 +49,12 @@ const Login = () => {
           Login
         </button>
 
-        <p className="text-center text-sm text-neutral-500 mt-4">
+        {/*<p className="text-center text-sm text-neutral-500 mt-4">
           Don't have an account?{' '}
           <Link to="/register" className="text-blue-600 hover:underline">
             Register
           </Link>
-        </p>
+        </p>*/}
       </div>
     </div>
   );
