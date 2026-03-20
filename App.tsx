@@ -1,4 +1,5 @@
 import Login from "./Login.tsx";
+import ForgotPassword from "./ForgotPassword.tsx";
 import { signOut } from "firebase/auth";
 import React, { useEffect, useMemo, useState, useRef } from 'react';
 import { AnimatePresence, motion, Reorder } from 'framer-motion';
@@ -861,14 +862,15 @@ const App: React.FC = () => {
   if (loading) return <div>Loading...</div>;
 
   if (!user) {
-    return (
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="*" element={<Navigate to="/login" replace />} />
-      </Routes>
-    );
-  }
+  return (
+    <Routes>
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/forgot-password" element={<ForgotPassword />} /> {/* ✅ ADD THIS */}
+      <Route path="*" element={<Navigate to="/login" replace />} />
+    </Routes>
+  );
+}
 
   return (
     <div className={`flex h-screen w-full bg-neutral-50 dark:bg-neutral-900 overflow-hidden text-neutral-900 dark:text-neutral-100 transition-colors`}>

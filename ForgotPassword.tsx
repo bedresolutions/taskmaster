@@ -8,15 +8,17 @@ export default function ForgotPassword() {
   const [status, setStatus] = useState<'idle' | 'sent' | 'error'>('idle');
   const [error, setError] = useState('');
 
-  const handleSubmit = async () => {
-    try {
-      await sendPasswordResetEmail(auth, email);
-      setStatus('sent');
-    } catch (e: any) {
-      setError(e.message);
-      setStatus('error');
-    }
-  };
+const handleSubmit = async (e?: React.MouseEvent) => {
+  e?.preventDefault(); // ✅ ADD THIS
+
+  try {
+    await sendPasswordResetEmail(auth, email);
+    setStatus('sent');
+  } catch (e: any) {
+    setError(e.message);
+    setStatus('error');
+  }
+};
 
   return (
     <div className="h-screen flex items-center justify-center bg-gradient-to-br from-blue-500 to-purple-500">
@@ -33,8 +35,7 @@ export default function ForgotPassword() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            <button
-              onClick={handleSubmit}
+            <button type="button" onClick={handleSubmit}
               className="w-full bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700"
             >
               Send Reset Email
